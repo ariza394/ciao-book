@@ -17,7 +17,7 @@ function App() {
       <br />
       <br />
       <br />
-      <Input />
+      <Input label={'firstName'} inputColor='input-success'/>
     </>
   )
 }

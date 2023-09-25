@@ -3,22 +3,21 @@ import styles from './Input.module.scss';
 
 interface Props {
     /**
-    * Text to display
+    * Color of the border
     */
-    children?: React.ReactNode,
+    inputColor?: 'input-primary' | 'input-secondary' | 'input-success' | 'input-danger' | 'input-warning' | 'input-info' | '';
     /**
-    * Size of the text
+    * Text to show
     */
-    name?: string;
-    /**
-    * Color to of the text
-    */
+    label: string;
     type?: string;
 }
 
 const Input = ({
     type = 'text',
-}:Props) => {
+    label,
+    inputColor = '',
+}: Props) => {
     // const combinedStyles = `${styles[fontStyle]} xBig ${styles[color]}`;
     const [focused, setFocused] = useState(false);
     const [inputValue, setInputValue] = useState('');
@@ -38,8 +37,8 @@ const Input = ({
     }, []); // Se ejecuta solo al montar el componente
 
     return (
-        <div className={`${styles['floating-label-input']} ${focused || inputValue !== '' ? styles.focused : ''}`}>
-            <label htmlFor="input">{focused || inputValue === '' ? 'FirstName' : ''}</label>
+        <div className={`${styles['floating-label-input']} ${focused || inputValue !== '' ? styles.focused : ''}  ${styles[inputColor]}`}>
+            <label htmlFor="input">{focused || inputValue === '' ? label : ''}</label>
             <input
                 type={type}
                 id="input"
@@ -51,5 +50,5 @@ const Input = ({
         </div>
     );
 };
- 
+
 export default Input;
